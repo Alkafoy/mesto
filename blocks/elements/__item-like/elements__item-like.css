@@ -4,8 +4,8 @@
     object-fit: cover;
     padding: 0;
     border: white;
-    cursor: pointer;  
-    transition: 0.3s ease-in-out;  
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
 }
 
 .elements__item-like:hover {
