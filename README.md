@@ -9,4 +9,4 @@
 * Адаптивная верстка
 * Базовый javascript
 
-https://alkafoy.github.io/russian-travel/
+https://alkafoy.github.io/mesto/
