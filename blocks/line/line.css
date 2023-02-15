@@ -1,0 +1,17 @@
+.line {
+    width: 880px;
+    margin: 0 auto 0;
+    border-bottom: 1px rgba(84, 84, 84, .7) solid;
+}
+
+@media (max-width: 899px) {
+    .line {
+        width: 581px;
+    }
+}
+
+@media (max-width: 600px) {
+    .line {
+        width: 100%;
+    }
+}

@@ -1,6 +1,7 @@
-.elements__item-like {
+.element__like {
     width: 22px;
     height: 19px;
+    background-color: transparent;
     object-fit: cover;
     padding: 0;
     border: white;
