@@ -1,7 +1,8 @@
 .header {
     max-width: 880px;
     margin: 45px auto 0;
-    padding-bottom: 38px;
+    padding-bottom: 36px;
+    border-bottom: 1px rgba(84, 84, 84, .7) solid;
 }
 
 @media (max-width: 899px) {
@@ -12,7 +13,9 @@
 
 @media (max-width: 600px) {
     .header {
-        width: 282px;
-        padding-bottom: 29px;
+        width: 100%;
+        padding-bottom: 32px;
+        display: flex;
+        justify-content: center;
     }
 }
