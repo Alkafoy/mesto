@@ -23,67 +23,14 @@
       </section>
       <section class="elements" aria-label="Места">
         <ul class="elements__list">
-          <li class="element">
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-            <div class="element__caption">
-              <h2 class="element__text">Карачаевск</h2>
-              <button class="element__like" type="button" aria-label="Нравится">
-                <img src="./images/like.svg" alt="Лайк">
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
-            <div class="element__caption">
-              <h2 class="element__text">Гора Эльбрус</h2>
-              <button class="element__like" type="button" aria-label="Нравится">
-                <img src="./images/like.svg" alt="Лайк">
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
-            <div class="element__caption">
-              <h2 class="element__text">Домбай</h2>
-              <button class="element__like" type="button" aria-label="Нравится">
-                <img src="./images/like.svg" alt="Лайк">
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
-            <div class="element__caption">
-              <h2 class="element__text">Гора Эльбрус</h2>
-              <button class="element__like" type="button" aria-label="Нравится">
-                <img src="./images/like.svg" alt="Лайк">
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
-            <div class="element__caption">
-              <h2 class="element__text">Домбай</h2>
-              <button class="element__like" type="button" aria-label="Нравится">
-                <img src="./images/like.svg" alt="Лайк">
-              </button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия">
-            <div class="element__caption">
-              <h2 class="element__text">Карачаево-Черкессия</h2>
-              <button class="element__like" type="button" aria-label="Нравится">
-                <img src="./images/like.svg" alt="Лайк">
-              </button>
-            </div>
-          </li>
+          
         </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_handle_edit">
       <div class="popup__container">
         <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
         <form class="popup__form" name="user information">
@@ -96,6 +43,36 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_handle_add">
+      <div class="popup__container">
+        <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
+        <form class="popup__form" name="user information">
+          <fieldset class="popup__fieldset">
+            <legend class="popup__legend">Новое место</legend>
+            <input class="popup__input popup__input_type_picture-title" type="text" name="picture__title" placeholder="Название" value="">
+            <input class="popup__input popup__input_type_picture-link" type="text" name="profile__description" placeholder="Ссылка на картинку" value="">
+            <button class="popup__submit-button" type="submit" aria-label="Сохранить">Создать</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup-zoom">
+      <div class="popup-zoom__container">
+          <button class="popup__close-icon"></button>
+          <img class="popup-zoom__image" src="#" alt="">
+          <h2 class="popup-zoom__caption"></h2>
+      </div>
+  </div>
+    <template id="template-element">
+      <li class="element">
+        <img class="element__image" src="" alt="">
+        <div class="element__caption">
+          <h2 class="element__text"></h2>
+          <button class="element__like" type="button" aria-label="Нравится"></button>
+        </div>
+        <button class="element__trash" type="button"></button>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

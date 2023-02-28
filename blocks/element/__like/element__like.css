@@ -1,7 +1,7 @@
 .element__like {
     width: 22px;
     height: 19px;
-    background-color: transparent;
+    background-image: url(../../../images/like.svg);
     object-fit: cover;
     padding: 0;
     border: white;
@@ -9,6 +9,6 @@
     transition: 0.3s ease-in-out;
 }
 
-.elements__item-like:hover {
+.element__like:hover {
     opacity: 0.5;
 }
