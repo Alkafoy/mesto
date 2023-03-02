@@ -1,7 +1,6 @@
 //получаем объекты для редактирование профиля
 const buttonEdit = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector(".popup_handle_edit");
-const buttonCloseEdit = popupEdit.querySelector(".popup__close-icon");
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 
@@ -12,40 +11,11 @@ const jobInput = formElementEdit.querySelector('.popup__input_type_job');
 
 
 //получаем объекты списка, в который нужно вставлять карточки
-const elements = document.querySelector('.elements').querySelector('.elements__list');
-
-//массив карточек по умолчанию
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+const cardsContainer = document.querySelector('.elements').querySelector('.elements__list');
 
 //получаем объекты для создания новой карточки
 const buttonAdd = document.querySelector('.profile__add-button');
 const popupAdd = document.querySelector(".popup_handle_add");
-const buttonCloseAdd = popupAdd.querySelector(".popup__close-icon");
 
 //получаем объекты полей формы создания новой карточки
 const formElementAdd = popupAdd.querySelector('.popup__form');
@@ -54,7 +24,6 @@ const pictureLinkInput = formElementAdd.querySelector('.popup__input_type_pictur
 
 //получаем объекты для создания увеличенного изображения
 const popupZoom = document.querySelector('.popup-zoom');
-const popupZoomClose = popupZoom.querySelector('.popup__close-icon');
 const popupZoomImage = popupZoom.querySelector('.popup-zoom__image');
 const popupZoomCaption = popupZoom.querySelector('.popup-zoom__caption');
 
@@ -67,13 +36,13 @@ function closePopup (popup) {
 };
 
 //добавление карточки в верстку
-function placeCardAdd (name, link) {
+function createCard (name, link) {
     const placeCard = document.querySelector('#template-element').content.querySelector('.element').cloneNode(true);
     const likeButton = placeCard.querySelector('.element__like');
     const trashButton = placeCard.querySelector('.element__trash');
-    const zoomButton = placeCard.querySelector('.element__image');
-    placeCard.querySelector('.element__image').src = link;
-    placeCard.querySelector('.element__image').alt = name;
+    const placeImage = placeCard.querySelector('.element__image');    
+    placeImage.src = link;
+    placeImage.alt = name;
     placeCard.querySelector('.element__caption').querySelector('.element__text').textContent = name;
     //переключатель состояния лайка
     function switchLike () {
@@ -86,35 +55,40 @@ function placeCardAdd (name, link) {
         listItem.remove();
     });
     //обработчик клика на изображение карточки
-    zoomButton.addEventListener('click', function(){
-        openPopupZoom(name, link);
+    placeImage.addEventListener('click', function(){
+        openPopup(popupZoom);
+        fillerZoom(name, link);
     });
-    elements.prepend(placeCard);
+    return placeCard;
 }
 
-function openPopupZoom(name, link) {
+function renderCard(name, link) {
+    const card = createCard(name, link);
+    cardsContainer.prepend(card);
+}
+
+function fillerZoom(name, link) {
     popupZoomImage.src = link;
     popupZoomImage.alt = name;
     popupZoomCaption.textContent = name;
-    popupZoom.classList.add('popup_opened');
 }
 
 //добавляем карточки по умолчанию
 initialCards.forEach(({name, link}) => {
-    placeCardAdd(name, link);
+    renderCard(name, link);
 });
 
 //открываем попап по нажатию кнопки создания
 buttonAdd.addEventListener('click', () => {openPopup(popupAdd)});
-//закрываем попап по нажатию кнопки с крестиком без сохранения
-buttonCloseAdd.addEventListener('click', () => {closePopup(popupAdd)});
 //закрываем попап с добавлением новой карточки
 formElementAdd.addEventListener('submit', (event) => {
     event.preventDefault();
-    placeCardAdd(pictureTitleInput.value, pictureLinkInput.value);
+    renderCard(pictureTitleInput.value, pictureLinkInput.value);
     closePopup(popupAdd);
+    pictureTitleInput.value = '';
+    pictureLinkInput.value = '';
 });
-popupZoomClose.addEventListener('click', () => {closePopup(popupZoom)});
+// popupZoomClose.addEventListener('click', () => {closePopup(popupZoom)});
 
 function handleFormSubmit (event) {
     event.preventDefault();
@@ -123,12 +97,21 @@ function handleFormSubmit (event) {
     closePopup(popupEdit);
 };
 
+//получаем все кнопки закрытия попапов и вешаем на них слушатели
+document.querySelectorAll('.popup__close-icon').forEach(button => {
+    const buttonsPopup = button.closest('.popup');
+    button.addEventListener('click', () => closePopup(buttonsPopup));
+});
+
+//добавляем содержимое заголовка и подзаголовка в формы и открываем попап
+function openEditPopup() {
+    nameInput.value = profileTitle.textContent;
+    jobInput.value = profileDescription.textContent;
+    openPopup(popupEdit);
+}
 //открываем попап по нажатию кнопки редактирования
-buttonEdit.addEventListener('click', () => {openPopup(popupEdit)});
-//добавляем содержимое заголовка и подзаголовка в формы
-nameInput.value = profileTitle.textContent;
-jobInput.value = profileDescription.textContent;
-//закрываем попап по нажатию кнопки с крестиком без сохранения
-buttonCloseEdit.addEventListener('click', () => {closePopup(popupEdit)});
+buttonEdit.addEventListener('click', openEditPopup);
+
+
 //закрываем попап с сохранением введённых значений
 formElementEdit.addEventListener('submit', handleFormSubmit);

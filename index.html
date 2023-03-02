@@ -33,13 +33,11 @@
     <div class="popup popup_handle_edit">
       <div class="popup__container">
         <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
-        <form class="popup__form" name="user information">
-          <fieldset class="popup__fieldset">
-            <legend class="popup__legend">Редактировать профиль</legend>
-            <input class="popup__input popup__input_type_name" type="text" name="profile__title" placeholder="Имя" value="">
-            <input class="popup__input popup__input_type_job" type="text" name="profile__description" placeholder="Описание" value="">
-            <button class="popup__submit-button" type="submit" aria-label="Сохранить">Сохранить</button>
-          </fieldset>
+        <form class="popup__form" name="user information">          
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__input popup__input_type_name" type="text" name="profile__title" placeholder="Имя" value="">
+          <input class="popup__input popup__input_type_job" type="text" name="profile__description" placeholder="Описание" value="">
+          <button class="popup__submit-button" type="submit" aria-label="Сохранить">Сохранить</button>          
         </form>
       </div>
     </div>
@@ -47,12 +45,10 @@
       <div class="popup__container">
         <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
         <form class="popup__form" name="user information">
-          <fieldset class="popup__fieldset">
-            <legend class="popup__legend">Новое место</legend>
-            <input class="popup__input popup__input_type_picture-title" type="text" name="picture__title" placeholder="Название" value="">
-            <input class="popup__input popup__input_type_picture-link" type="text" name="profile__description" placeholder="Ссылка на картинку" value="">
-            <button class="popup__submit-button" type="submit" aria-label="Сохранить">Создать</button>
-          </fieldset>
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__input popup__input_type_picture-title" type="text" name="picture__title" placeholder="Название" value="">
+          <input class="popup__input popup__input_type_picture-link" type="text" name="profile__description" placeholder="Ссылка на картинку" value="">
+          <button class="popup__submit-button" type="submit" aria-label="Сохранить">Создать</button>
         </form>
       </div>
     </div>
@@ -73,6 +69,7 @@
         <button class="element__trash" type="button"></button>
       </li>
     </template>
+    <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
