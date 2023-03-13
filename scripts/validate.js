@@ -2,7 +2,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     // Находим элемент ошибки внутри элемента формы
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     // Добавляем класс ошибки в элемент ввода
-    inputElement.classList.add('popup__input_type_error');
+    inputElement.classList.add(validationConfig.inputErrorClass);
     // Добавляем сообщение об ошибке
     errorElement.textContent = errorMessage;
 };
@@ -11,7 +11,7 @@ const hideInputError = (formElement, inputElement) => {
     // Находим элемент ошибки внутри элемента формы
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
     // Удаляем класс ошибки из элемента ввода
-    inputElement.classList.remove('popup__input_type_error');
+    inputElement.classList.remove(validationConfig.inputErrorClass);
     // Сбрасываем сообщение об ошибке
     errorElement.textContent = '';
 };
@@ -54,7 +54,7 @@ const setEventListeners = (formElement, config) => {
     // Находим кнопку отправки формы внутри формы
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
     // Переключаем состояния кнопки при изменении ввода
-    toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
+    toggleButtonState(inputList, buttonElement, validationConfig);
     // Для каждого элемента ввода
     inputList.forEach((inputElement) => {
         // При изменении ввода
@@ -62,7 +62,7 @@ const setEventListeners = (formElement, config) => {
             // Проверяем допустимость ввода
             checkInputValidity(formElement, inputElement);
             // Переключаем состояние кнопки
-            toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
+            toggleButtonState(inputList, buttonElement, validationConfig);
         });
     });
     // Добавляем обработчик события reset для формы
