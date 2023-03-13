@@ -1,3 +1,11 @@
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-button',
+    inactiveButtonClass: 'popup__submit-button_disabled',
+    inputErrorClass: 'popup__input_type_error'
+};
+
 const showInputError = (formElement, inputElement, errorMessage) => {
     // Находим элемент ошибки внутри элемента формы
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -54,7 +62,7 @@ const setEventListeners = (formElement, config) => {
     // Находим кнопку отправки формы внутри формы
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
     // Переключаем состояния кнопки при изменении ввода
-    toggleButtonState(inputList, buttonElement, validationConfig);
+    toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
     // Для каждого элемента ввода
     inputList.forEach((inputElement) => {
         // При изменении ввода
@@ -82,14 +90,6 @@ const enableValidation = (config) => {
     formList.forEach((formElement) => {
         setEventListeners(formElement, config);
     });
-};
-
-const validationConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit-button',
-    inactiveButtonClass: 'popup__submit-button_disabled',
-    inputErrorClass: 'popup__input_type_error'
 };
 
 const resetInputError = (formElement, config) => {
