@@ -1,3 +1,6 @@
+import {initialCards} from "./cards";
+import {Card} from "./Card.js";
+
 //получаем объекты для редактирование профиля
 const buttonEdit = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector(".popup_handle_edit");
@@ -13,7 +16,7 @@ const cardsContainer = document.querySelector('.elements').querySelector('.eleme
 //получаем объекты для создания новой карточки
 const buttonAdd = document.querySelector('.profile__add-button');
 const popupAdd = document.querySelector(".popup_handle_add");
-const cardTemplate = document.querySelector('#template-element').content.querySelector('.element');
+// const cardTemplate = document.querySelector('#template-element').content.querySelector('.element');
 //получаем объекты полей формы создания новой карточки
 const formElementAdd = popupAdd.querySelector('.popup__form');
 const pictureTitleInput = formElementAdd.querySelector('.popup__input_type_picture-title');
@@ -31,6 +34,7 @@ function handleEscClose(event) {
         closePopup(popupOpened);
     }
 }
+
 //функция закрытия попапов по клику на оверлей
 function closePopupByOverlay(event) {
     if (event.target.classList.contains('popup')) {
@@ -47,43 +51,12 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', handleEscClose);
 };
-//создание карточки
-function createCard(name, link) {
-    const placeCard = cardTemplate.cloneNode(true);
-    const likeButton = placeCard.querySelector('.element__like');
-    const trashButton = placeCard.querySelector('.element__trash');
-    const placeImage = placeCard.querySelector('.element__image');
-    placeImage.src = link;
-    placeImage.alt = name;
-    placeCard.querySelector('.element__caption').querySelector('.element__text').textContent = name;
-    //переключатель состояния лайка
-    function switchLike() {
-        likeButton.classList.toggle('element__like_active');
-    };
-    likeButton.addEventListener('click', switchLike);
-    //удалятель карточки
-    trashButton.addEventListener('click', function () {
-        const listItem = trashButton.closest('.element');
-        listItem.remove();
-    });
-    //обработчик клика на изображение карточки
-    placeImage.addEventListener('click', function () {
-        fillerZoom(name, link);
-    });
-    return placeCard;
-}
 
 function renderCard(name, link) {
     const card = createCard(name, link);
     cardsContainer.prepend(card);
 }
 
-function fillerZoom(name, link) {
-    popupZoomImage.src = link;
-    popupZoomImage.alt = name;
-    popupZoomCaption.textContent = name;
-    openPopup(popupZoom);
-}
 
 function handleFormEditSubmit(event) {
     event.preventDefault();
@@ -91,6 +64,7 @@ function handleFormEditSubmit(event) {
     profileDescription.textContent = jobInput.value;
     closePopup(popupEdit);
 };
+
 //добавляем содержимое заголовка и подзаголовка в формы и открываем попап
 function openEditPopup() {
     nameInput.value = profileTitle.textContent;
@@ -98,11 +72,12 @@ function openEditPopup() {
     resetValidation(formEdit, validationConfig);
     openPopup(popupEdit);
 }
+
 //открываем попап по нажатию кнопки создания
 buttonAdd.addEventListener('click', () => {
     formCreate.reset();
     resetValidation(formCreate, validationConfig);
-    openPopup(popupAdd)    
+    openPopup(popupAdd)
 });
 
 //закрываем попап с добавлением новой карточки
@@ -125,6 +100,6 @@ buttonEdit.addEventListener('click', openEditPopup);
 //закрываем попап с сохранением введённых значений
 formElementEdit.addEventListener('submit', handleFormEditSubmit);
 //добавляем карточки по умолчанию
-initialCards.forEach(({ name, link }) => {
+initialCards.forEach(({name, link}) => {
     renderCard(name, link);
 });
