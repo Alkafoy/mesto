@@ -1,4 +1,4 @@
-import {initialCards} from "./cards";
+import {initialCards} from "./cards.js";
 import {Card} from "./Card.js";
 
 //получаем объекты для редактирование профиля
@@ -53,7 +53,7 @@ function closePopup(popup) {
 };
 
 function renderCard(name, link) {
-    const card = createCard(name, link);
+    const card = new Card(name,);
     cardsContainer.prepend(card);
 }
 
