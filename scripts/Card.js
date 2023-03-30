@@ -1,16 +1,15 @@
 export class Card {
-    constructor(data, templateSelector) {
-        this._name = data.name;
-        this._link = data.link;
+    constructor(name, link, templateSelector, fillerZoom) {
+        this._name = name;
+        this._link = link;
         this._templateSelector = templateSelector;
+        this._fillerZoom = fillerZoom;
     }
 
     _getTemplate() {
-        const cardElement = document
-            .querySelector(this._templateSelector)
+        return this._templateSelector
             .content.querySelector('.element')
             .cloneNode(true);
-        return cardElement;
     }
 
     _switchLike() {
@@ -22,12 +21,9 @@ export class Card {
         this._card = null;
     }
 
-    _fillerZoom() {
-        popupZoomImage.src = this._link;
-        popupZoomImage.alt = this._name;
-        popupZoomCaption.textContent = this._name;
-        openPopup(popupZoom);
-    }
+    // _handlerZoom = () => {
+    //     this._fillerZoom(this._link, this._name);
+    // }
 
     _setEventListeners() {
         const likeButton = this._card.querySelector('.element__like');
@@ -39,8 +35,7 @@ export class Card {
         trashButton.addEventListener('click', () => {
             this._removerCard();
         })
-
-        placeImage.addEventListener('click',  () => {
+        placeImage.addEventListener('click', () => {
             this._fillerZoom(this._name, this._link);
         });
     }
