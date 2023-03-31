@@ -37,6 +37,7 @@ const validationConfig = {
 };
 const formValidatorEdit = new FormValidator(validationConfig, formElementEdit);
 const formValidatorAdd = new FormValidator(validationConfig, formElementAdd);
+
 //функция закрытия попапов по нажатию клавиши esc
 function handleEscClose(event) {
     if (event.key === 'Escape') {
@@ -62,12 +63,20 @@ function closePopup(popup) {
     document.removeEventListener('keydown', handleEscClose);
 }
 
-function renderCard(name, link) {
+// function renderCard(name, link) {
+//     const card = new Card(name, link, cardTemplate, fillerZoom);
+//     const cardElement = card.createCard();
+//     cardsContainer.prepend(cardElement);
+// }
+
+function generateCard(name, link) {
     const card = new Card(name, link, cardTemplate, fillerZoom);
-    const cardElement = card.createCard();
-    cardsContainer.prepend(cardElement);
+    return card.createCard();
 }
 
+function renderCard(name, link) {
+    cardsContainer.prepend(generateCard(name, link))
+}
 
 function handleFormEditSubmit(event) {
     event.preventDefault();
@@ -80,14 +89,14 @@ function handleFormEditSubmit(event) {
 function openEditPopup() {
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileDescription.textContent;
-    formValidatorEdit.resetValidation(formEdit, validationConfig);
+    formValidatorEdit.resetValidation();
     openPopup(popupEdit);
 }
 
 //открываем попап по нажатию кнопки создания
 buttonAdd.addEventListener('click', () => {
     formCreate.reset();
-    formValidatorAdd.resetValidation(formCreate, validationConfig);
+    formValidatorAdd.resetValidation();
     openPopup(popupAdd)
 });
 
@@ -120,5 +129,5 @@ initialCards.forEach(({name, link}) => {
     renderCard(name, link);
 });
 
-formValidatorAdd.enableValidation(validationConfig);
-formValidatorEdit.enableValidation(validationConfig);
+formValidatorAdd.enableValidation();
+formValidatorEdit.enableValidation();
