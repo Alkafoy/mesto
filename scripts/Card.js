@@ -1,16 +1,12 @@
 export class Card {
-    constructor(name, link, template, fillerZoom) {
+    constructor(name, link, templateSelector, fillerZoom) {
         this._name = name;
         this._link = link;
-        this._template = template;
+        this._templateSelector = templateSelector;
         this._fillerZoom = fillerZoom;
     }
-
-    //то есть это
     _getTemplate() {
-        return this._template
-            .content.querySelector('.element')
-            .cloneNode(true)
+        return document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true)
     }
 
     _switchLike() {
@@ -22,7 +18,7 @@ export class Card {
         this._card = null;
     }
 
-    _setEventListeners() {
+    _setEventListeners = () => {
         this._likeButton = this._card.querySelector('.element__like');
         this._trashButton = this._card.querySelector('.element__trash');
         this._placeImage = this._card.querySelector('.element__image');
@@ -37,11 +33,10 @@ export class Card {
         });
     }
 
-    createCard() {
+    createCard = () => {
         this._card = this._getTemplate();
         this._setEventListeners();
         this._cardCaption = this._card.querySelector(".element__text");
-        this._placeImage = this._card.querySelector('.element__image');
         this._placeImage.src = this._link;
         this._placeImage.alt = this._name;
         this._cardCaption.textContent = this._name;

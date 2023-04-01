@@ -11,13 +11,11 @@ const profileDescription = document.querySelector('.profile__description');
 const formElementEdit = popupEdit.querySelector('.popup__form');
 const nameInput = formElementEdit.querySelector('.popup__input_type_name');
 const jobInput = formElementEdit.querySelector('.popup__input_type_job');
-const formEdit = popupEdit.querySelector('.popup__form_edit');
 //получаем объекты списка, в который нужно вставлять карточки
 const cardsContainer = document.querySelector('.elements').querySelector('.elements__list');
 //получаем объекты для создания новой карточки
 const buttonAdd = document.querySelector('.profile__add-button');
 const popupAdd = document.querySelector(".popup_handle_add");
-const cardTemplate = document.querySelector('#template-element');
 //получаем объекты полей формы создания новой карточки
 const formElementAdd = popupAdd.querySelector('.popup__form');
 const pictureTitleInput = formElementAdd.querySelector('.popup__input_type_picture-title');
@@ -63,14 +61,8 @@ function closePopup(popup) {
     document.removeEventListener('keydown', handleEscClose);
 }
 
-// function renderCard(name, link) {
-//     const card = new Card(name, link, cardTemplate, fillerZoom);
-//     const cardElement = card.createCard();
-//     cardsContainer.prepend(cardElement);
-// }
-
 function generateCard(name, link) {
-    const card = new Card(name, link, cardTemplate, fillerZoom);
+    const card = new Card(name, link, '#template-element', fillerZoom);
     return card.createCard();
 }
 

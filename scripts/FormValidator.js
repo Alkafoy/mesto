@@ -79,11 +79,9 @@ export class FormValidator {
         });
     };
     enableValidation = () => {
-        const formList = [this._formElement];
-        formList.forEach(() => {
             this._setEventListeners();
-        })
-    };
+        }
+
     _resetInputError = () => {
         this._inputList.forEach((inputElement) => {
             this._hideInputError(inputElement)
