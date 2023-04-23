@@ -1,9 +1,9 @@
 export class Card {
-    constructor(name, link, templateSelector, fillerZoom) {
+    constructor(name, link, templateSelector, handleCardClick) {
         this._name = name;
         this._link = link;
         this._templateSelector = templateSelector;
-        this._fillerZoom = fillerZoom;
+        this._handleCardClick = handleCardClick;
     }
     _getTemplate() {
         return document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true)
@@ -29,7 +29,7 @@ export class Card {
             this._removerCard();
         })
         this._placeImage.addEventListener('click', () => {
-            this._fillerZoom(this._name, this._link);
+            this._handleCardClick(this._name, this._link);
         });
     }
 
