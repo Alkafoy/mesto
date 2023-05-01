@@ -10,7 +10,7 @@ export class UserInfo {
         return {name, info};
     }
 
-    setUserInfo(name, info) {
+    setUserInfo({name, info}) {
         this._nameElement.textContent = name;
         this._infoElement.textContent = info;
     }

@@ -6,7 +6,7 @@ export const formElementEdit = popupEdit.querySelector('.popup__form');
 export const nameInput = formElementEdit.querySelector('.popup__input_type_name');
 export const jobInput = formElementEdit.querySelector('.popup__input_type_job');
 //получаем объекты списка, в который нужно вставлять карточки
-export const cardsContainer = document.querySelector('.elements').querySelector('.elements__list');
+export const cardsContainer = document.querySelector('.elements__list');
 //получаем объекты для создания новой карточки
 export const buttonAdd = document.querySelector('.profile__add-button');
 export const popupAdd = document.querySelector('.popup_handle_add');
