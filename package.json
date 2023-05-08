@@ -1,11 +1,13 @@
 {
-  "name": "cohort-64",
+  "name": "cohort-65",
   "version": "0.0.1",
   "description": "На странице можно редактировать имя автора и его описание, можно добавлять и удалять карточки с фотографиями, ставить и снимать лайки.",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Sergey Emelyanov",
   "license": "ISC",
@@ -17,6 +19,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
     "cssnano": "^6.0.1",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.7.5",
     "postcss-loader": "^7.3.0",
