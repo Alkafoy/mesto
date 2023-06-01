@@ -26,13 +26,6 @@ const api = new Api({
         'Content-Type': 'application/json'
     }
 });
-api.getUserInfo()
-    .then(res => {
-        userInfo.setUserInfo({name: res.name, info: res.about});
-    });
-
-api.getInitialCards()
-    .then(res => console.log(res))
 
 const formValidatorEdit = new FormValidator(validationConfig, formElementEdit);
 const formValidatorAdd = new FormValidator(validationConfig, formElementAdd);
@@ -55,11 +48,11 @@ const popupEditAvatar = new PopupWithForm(
                     info: res.about,
                     avatar: res.avatar
                 })
+                popupEditAvatar.close();
             })
             .catch(err => console.error('Ошибка при обновлении аватара:', err))
             .finally(() => {
                 popupEditAvatar.setDefaultText();
-                popupEditAvatar.close();
             })
     })
 //создаём объект всплывающее окно для редактирования профиля
@@ -74,11 +67,11 @@ const popupEditProfile = new PopupWithForm('.popup_handle_edit',
                     info: res.about,
                     avatar: res.avatar
                 })
+                popupEditProfile.close();
             })
             .catch(err => console.error('Ошибка при обновлении информации о пользователе:', err))
             .finally(() => {
                 popupEditProfile.setDefaultText();
-                popupEditProfile.close();
             });
     }
 );
@@ -140,18 +133,16 @@ function generateCard(cardsData) {
 const popupAddCard = new PopupWithForm(
     '.popup_handle_add',
     (data) => {
-        Promise.all([api.getUserInfo(), api.addCard(data)])
-            .then(([
-                       userData,
-                       cardsData
-                   ]) => {
-                cardsData.myId = userData._id;
+        api.addCard(data)
+            .then(cardsData => {
+                // console.log(userInfo.getId())
+                cardsData.myId = userInfo.getId();
                 cardSection.addItemPrepend(generateCard(cardsData));
+                popupAddCard.close();
             })
             .catch(err => console.error('Ошибка при создании карточки:', err))
             .finally(() => {
                 popupAddCard.setDefaultText();
-                popupAddCard.close();
             })
     });
 //добавляем содержимое заголовка и подзаголовка в формы и открываем попап
@@ -198,6 +189,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
             info: userData.about,
             avatar: userData.avatar
         });
-        cardSection.renderItems(cardsData)
+        userInfo.setId(userData._id);
+        cardSection.renderItems(cardsData);
     })
     .catch(err => console.error('Ошибка при загрузке начальных данных:', err))

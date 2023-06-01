@@ -13,6 +13,6 @@
 * Базовый javascript
 * Использованы базовые принципы ООП
 * Установлен Node.js и WebPack
-* Проект Mesto к серверу
+* Проект Mesto подключён к серверу
 
 https://alkafoy.github.io/mesto/

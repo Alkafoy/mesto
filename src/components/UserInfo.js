@@ -16,4 +16,12 @@ export class UserInfo {
         this._infoElement.textContent = info;
         this._profileAvatar.src = avatar;
     }
+
+    setId(id) {
+        this._id = id;
+    }
+
+    getId() {
+        return this._id;
+    }
 }
