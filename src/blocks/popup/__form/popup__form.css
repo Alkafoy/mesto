@@ -5,3 +5,7 @@
     flex-direction: column;
     border: none;    
 }
+
+.popup__form > input:nth-of-type(1) {
+    margin-top: 15px;
+}

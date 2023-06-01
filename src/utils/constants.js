@@ -19,6 +19,10 @@ export const formCreate = popupAdd.querySelector('.popup__form_add');
 export const popupZoom = document.querySelector('.popup-zoom');
 export const popupZoomImage = popupZoom.querySelector('.popup-zoom__image');
 export const popupZoomCaption = popupZoom.querySelector('.popup-zoom__caption');
+//объект поля редактирования аватара
+export const popupAvatar = document.querySelector('.popup_handle_avatar');
+export const formElementAvatar = popupAvatar.querySelector('.popup__form');
+
 // получаем набор селекторов для валидации
 export const validationConfig = {
     formSelector: '.popup__form',

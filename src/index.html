@@ -1,76 +1,136 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <link rel="stylesheet" href="./pages/index.css">-->
     <title>Место</title>
-  </head>
-  <body class="page">
-    <header class="header">
-      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип заголовка">
-    </header>
-    <main class="main">
-      <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
+</head>
+<body class="page">
+<header class="header">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип заголовка">
+</header>
+<main class="main">
+    <section class="profile">
+        <div class="profile__avatar-wrap">
+            <img class="profile__avatar" src='#' alt="Аватар">
+            <button class="profile__avatar-edit" type="button" aria-label="Редактировать аватар"></button>
+        </div>
         <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
-          <p class="profile__description">Исследователь океана</p>
+            <h1 class="profile__title"></h1>
+            <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
+            <p class="profile__description"></p>
         </div>
         <button class="profile__add-button" type="button" aria-label="Добавить">
         </button>
-      </section>
-      <section class="elements" aria-label="Места">
+    </section>
+    <section class="elements" aria-label="Места">
         <ul class="elements__list">
-          
         </ul>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__text">© 2020 Mesto Russia</p>
-    </footer>
-    <div class="popup popup_handle_edit">
-      <div class="popup__container">
+    </section>
+</main>
+<footer class="footer">
+    <p class="footer__text">© 2020 Mesto Russia</p>
+</footer>
+<div class="popup popup_handle_edit">
+    <div class="popup__container">
         <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
         <form class="popup__form popup__form_edit" novalidate>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input popup__input_type_name" id="name-input" name="name" type="text" placeholder="Имя"  minlength="2" maxlength="40" required>
-          <span class="name-input-error popup__input-error"></span>          
-          <input class="popup__input popup__input_type_job" id="description-input" name="info" type="text" placeholder="Описание"  minlength="2" maxlength="200" required>
-          <span class="description-input-error popup__input-error"></span>
-          <button class="popup__submit-button" type="submit" aria-label="Сохранить">Сохранить</button>          
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input class="popup__input popup__input_type_name"
+                   id="name-input"
+                   name="name"
+                   type="text"
+                   placeholder="Имя"
+                   minlength="2"
+                   maxlength="40"
+                   required>
+            <span class="name-input-error popup__input-error"></span>
+            <input class="popup__input popup__input_type_job"
+                   id="description-input"
+                   name="info"
+                   type="text"
+                   placeholder="Описание"
+                   minlength="2"
+                   maxlength="200"
+                   required>
+            <span class="description-input-error popup__input-error"></span>
+            <button class="popup__submit-button"
+                    type="submit"
+                    aria-label="Сохранить">Сохранить</button>
         </form>
-      </div>
     </div>
-    <div class="popup popup_handle_add">
-      <div class="popup__container">
+</div>
+<div class="popup popup_handle_add">
+    <div class="popup__container">
         <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
         <form class="popup__form popup__form_add" novalidate>
-          <h2 class="popup__title">Новое место</h2>
-          <input class="popup__input popup__input_type_picture-title" id="title-input" name="title" type="text" placeholder="Название" required minlength="2" maxlength="30">
-          <span class="title-input-error popup__input-error"></span>          
-          <input class="popup__input popup__input_type_picture-link" id="url-input" name="link" type="url" placeholder="Ссылка на картинку" required>
-          <span class="url-input-error popup__input-error"></span>
-          <button class="popup__submit-button" type="submit" aria-label="Сохранить">Создать</button>
+            <h2 class="popup__title">Новое место</h2>
+            <input class="popup__input popup__input_type_picture-title"
+                   id="title-input"
+                   name="title"
+                   type="text"
+                   placeholder="Название"
+                   required minlength="2"
+                   maxlength="30">
+            <span class="title-input-error popup__input-error"></span>
+            <input class="popup__input popup__input_type_picture-link"
+                   id="url-input"
+                   name="link"
+                   type="url"
+                   placeholder="Ссылка на картинку"
+                   required>
+            <span class="url-input-error popup__input-error"></span>
+            <button class="popup__submit-button" type="submit" aria-label="Сохранить">Создать</button>
         </form>
-      </div>
     </div>
-    <div class="popup popup-zoom">
-      <div class="popup-zoom__container">
-          <button class="popup__close-icon"></button>
-          <img class="popup-zoom__image" src="#" alt="">
-          <h2 class="popup-zoom__caption"></h2>
-      </div>
-  </div>
-    <template id="template-element">
-      <li class="element">
+</div>
+<div class="popup popup-zoom">
+    <div class="popup-zoom__container">
+        <button class="popup__close-icon"></button>
+        <img class="popup-zoom__image" src="#" alt="">
+        <h2 class="popup-zoom__caption"></h2>
+    </div>
+</div>
+<div class="popup popup-confirmation">
+    <div class="popup__container">
+        <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
+        <form class="popup__form popup__form_edit" novalidate>
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button class="popup__submit-button" type="submit" aria-label="Сохранить">Да</button>
+        </form>
+    </div>
+</div>
+<div class="popup popup_handle_avatar">
+    <div class="popup__container">
+        <button class="popup__close-icon" type="button" aria-label="Закрыть"></button>
+        <form class="popup__form popup__form_add" novalidate>
+            <h2 class="popup__title">Обновить аватар</h2>
+            <input
+                    class="popup__input popup__input_type_picture-link"
+                    id="url-avatar"
+                    name="avatar"
+                    type="url"
+                    placeholder="Ссылка на аватар"
+                    required>
+            <span class="url-avatar-error popup__input-error"></span>
+            <button class="popup__submit-button" type="submit" aria-label="Изменить аватар">Сохранить</button>
+        </form>
+    </div>
+</div>
+<template id="template-element">
+    <li class="element">
         <img class="element__image" src="#" alt="">
         <div class="element__caption">
-          <h2 class="element__text"></h2>
-          <button class="element__like" type="button" aria-label="Нравится"></button>
+            <h2 class="element__text"></h2>
+            <div class="element__like-container">
+                <button class="element__like" type="button" aria-label="Нравится"></button>
+                <p class="element__like-counter">0</p>
+            </div>
         </div>
         <button class="element__trash" type="button"></button>
-      </li>
-    </template>
-  </body>
+    </li>
+</template>
+<!--<script type="module" src="./pages/index.js"></script>-->
+</body>
 </html>
